@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import WindowSection from '../../components/WindowSection';
 import Button from '../../components/Button';
+import CheckBox from '../../components/CheckBox';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DateAndTimePicker from '../../components/DatePicker';
 import { makeStyles } from '@material-ui/core/styles';
@@ -150,11 +151,18 @@ export default function ConsultancyForm() {
 
             </S.OnboardingContainer>
 
-                    <S.ButtonContainer isMobile={isMobile}>
-                        <Button styleType='callToAction'>
-                            AGENDAR
-                        </Button>
-                    </S.ButtonContainer>
+            <S.LopdContainer isMobile={isMobile}>
+                <CheckBox/>
+                <S.LopdText>
+                    Acepto la política de privacidad
+                </S.LopdText>
+            </S.LopdContainer>
+
+            <S.ButtonContainer isMobile={isMobile}>
+                <Button styleType='callToAction'>
+                    AGENDAR
+                </Button>
+            </S.ButtonContainer>
 
         </WindowSection>
     )
