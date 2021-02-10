@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-// import useStyles from "./styles";
+import useStyles from "./styles";
 
 export default function MyCheckBox() {
   const [checked, setChecked] = useState(false);
 
-//   const {root} = useStyles();
+  const {checkbox} = useStyles();
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -17,7 +17,8 @@ export default function MyCheckBox() {
         checked={checked}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'primary checkbox' }}
-        // className={root}
+        className={checkbox}
+        color='#fdcf08'
       />
     </div>
   );

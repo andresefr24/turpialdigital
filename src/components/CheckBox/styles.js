@@ -1,11 +1,9 @@
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = withStyles({
-    root: {
-      '&$checked': {
-        color: '#fdcf08',
-      },
-    }
+const useStyles = makeStyles({
+    checkbox: {
+      color: '#fdcf08',
+    },
   });
 
 
