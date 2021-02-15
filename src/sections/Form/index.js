@@ -1,14 +1,16 @@
-import React from 'react';
-import * as S from './styles';
-import WindowSection from '../../components/WindowSection';
-import Button from '../../components/Button';
+import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DateAndTimePicker from '../../components/DatePicker';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import FilledInput from '@material-ui/core/FilledInput';
+import Button from '@material-ui/core/Button';
+import * as S from './styles';
+import WindowSection from '../../components/WindowSection';
+import CheckBox from '../../components/CheckBox';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,14 +37,35 @@ const otherStyles = makeStyles((theme) => ({
   },
 }));
 
+const MyButton = withStyles((theme) => ({
+    root: {
+        fontFamily: [
+            'Roboto',
+          ].join(','), 
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: theme.palette.getContrastText('#fdcf08'),
+        backgroundColor: '#fdcf08',
+        '&:hover': {
+            backgroundColor: '#EDC412',
+        },
+    },
+  }))(Button);
+
 
 export default function ConsultancyForm() {
+
+    const [acceptLOPD, setAcceptLOPD] = useState(false);
 
     const isMobile = useMediaQuery('(max-width:484px)');
     const isBigScreen = useMediaQuery('(min-width:1562px)');
 
     const styles = useStyles();
     const classes = otherStyles();
+
+    const handleChange = () => {
+        setAcceptLOPD(!acceptLOPD);
+    }
 
     return (
         <WindowSection id='myform'>
@@ -150,11 +173,25 @@ export default function ConsultancyForm() {
 
             </S.OnboardingContainer>
 
-                    <S.ButtonContainer isMobile={isMobile}>
-                        <Button styleType='callToAction'>
-                            AGENDAR
-                        </Button>
-                    </S.ButtonContainer>
+            <S.LopdContainer isMobile={isMobile}>
+                <CheckBox 
+                    checked={acceptLOPD}
+                    onChange={handleChange}
+                />
+                <S.LopdText>
+                    Acepto la política de privacidad
+                </S.LopdText>
+            </S.LopdContainer>
+
+            <S.ButtonContainer isMobile={isMobile}>
+                <MyButton 
+                    variant="contained" 
+                    color={acceptLOPD ? "secondary" : "grey"}
+                    disabled={!acceptLOPD}
+                >
+                    AGENDAR
+                </MyButton>
+            </S.ButtonContainer>
 
         </WindowSection>
     )
