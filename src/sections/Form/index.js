@@ -1,56 +1,22 @@
 import React, { useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DateAndTimePicker from '../../components/DatePicker';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import FilledInput from '@material-ui/core/FilledInput';
-import Button from '@material-ui/core/Button';
-import * as S from './styles';
+import useStyles, { 
+    OnboardingContainer,
+    SectionTitle,
+    SectionText,
+    DateContainer,
+    LopdContainer,
+    LopdText,
+    ButtonContainer,
+    MyButton,
+} from './styles';
 import WindowSection from '../../components/WindowSection';
 import CheckBox from '../../components/CheckBox';
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(2),
-        width: '297px',
-      },
-    },
-  }));
-
-const otherStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing(2),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(2),
-  },
-  textField: {
-    width: '30ch',
-  },
-}));
-
-const MyButton = withStyles((theme) => ({
-    root: {
-        fontFamily: [
-            'Roboto',
-          ].join(','), 
-        fontWeight: 'bold',
-        fontSize: 18,
-        color: theme.palette.getContrastText('#fdcf08'),
-        backgroundColor: '#fdcf08',
-        '&:hover': {
-            backgroundColor: '#EDC412',
-        },
-    },
-  }))(Button);
 
 
 export default function ConsultancyForm() {
@@ -60,32 +26,37 @@ export default function ConsultancyForm() {
     const isMobile = useMediaQuery('(max-width:484px)');
     const isBigScreen = useMediaQuery('(min-width:1562px)');
 
-    const styles = useStyles();
-    const classes = otherStyles();
-
     const handleChange = () => {
         setAcceptLOPD(!acceptLOPD);
     }
 
+    const {
+        smallTextFieldContainer,
+        bigTextFieldContainer,
+        margin,
+        textField
+    } = useStyles();
+
     return (
         <WindowSection id='myform'>
 
-            <S.OnboardingContainer isMobile={isMobile}>
+            <OnboardingContainer isMobile={isMobile}>
             
-                <S.SectionTitle>
+                <SectionTitle>
                     ¡Bienvenido al mundo digital! 
-                </S.SectionTitle>
+                </SectionTitle>
 
-                <S.SectionText isBigScreen={isBigScreen} isMobile={isMobile}>
+                <SectionText isBigScreen={isBigScreen} isMobile={isMobile}>
                     ¡Enhorabuena! Has dado el primer paso para hacer crecer tu negocio y, con ello, tus ganancias. Te damos las gracias por permitirnos acompañarte en el proceso. 
                     <br/>
                     <br/>
                     Comenzar es muy sencillo. Solo tienes que rellenar el siguiente formulario, escoger el horario de tu preferencia y agendar tu cita. ¡Estamos ansiosos por conocerte!
-                </S.SectionText>
+                </SectionText>
 
                 <form noValidate autoComplete="off">
-                    <div className={styles.root}>
+                    <div className={smallTextFieldContainer} isMobile={isMobile}>
                         <TextField 
+                        className={textField}
                         id='filled-size-small'
                         variant='filled'
                         size='small'
@@ -94,6 +65,7 @@ export default function ConsultancyForm() {
                         />
 
                         <TextField 
+                        className={textField}
                         id='filled-size-small'
                         variant='filled'
                         size='small'
@@ -103,6 +75,7 @@ export default function ConsultancyForm() {
                         />
 
                         <TextField 
+                        className={textField}
                         id='filled-size-small'
                         variant='filled'
                         size='small'
@@ -111,9 +84,9 @@ export default function ConsultancyForm() {
                         />
                     </div>
                     
-                    <div className={classes.root}>    
+                    <div className={bigTextFieldContainer}>    
 
-                        <FormControl fullWidth className={classes.margin} variant="filled">
+                        <FormControl fullWidth className={margin} variant="filled">
                             <InputLabel>Nombre de tu negocio</InputLabel>
                             <FilledInput 
                             id="filled-multiline-static"
@@ -124,7 +97,7 @@ export default function ConsultancyForm() {
                             />
                         </FormControl>
 
-                        <FormControl fullWidth className={classes.margin} variant="filled">
+                        <FormControl fullWidth className={margin} variant="filled">
                             <InputLabel>¿A qué se dedica tu negocio?</InputLabel>
                             <FilledInput 
                             id="filled-multiline-static"
@@ -136,7 +109,7 @@ export default function ConsultancyForm() {
                             />
                         </FormControl>
 
-                        <FormControl fullWidth className={classes.margin} variant="filled">
+                        <FormControl fullWidth className={margin} variant="filled">
                             <InputLabel>¿Qué te gustaría lograr con la asesoría?</InputLabel>
                             <FilledInput 
                             id="filled-multiline-static"
@@ -148,7 +121,7 @@ export default function ConsultancyForm() {
                             />
                         </FormControl>
 
-                        <FormControl fullWidth className={classes.margin} variant="filled">
+                        <FormControl fullWidth className={margin} variant="filled">
                             <InputLabel>Si tu negocio tiene página web y redes sociales, déjanoslas aquí:</InputLabel>
                             <FilledInput 
                             id="filled-multiline-static"
@@ -161,29 +134,29 @@ export default function ConsultancyForm() {
                     </div>
                 </form>
             
-                    <S.SectionText isBigScreen={isBigScreen} isMobile={isMobile}>
+                    <SectionText isBigScreen={isBigScreen} isMobile={isMobile}>
                         <b>Selecciona la fecha y hora de tu preferencia.</b>
                         <br/>
                         Podemos contactarte los días lunes, miércoles y viernes entre las <b>18:00 y las 20:00 (hora España).</b> La llamada tendrá una duración de 30 minutos.
-                    </S.SectionText>
+                    </SectionText>
 
-                <S.DateContainer isMobile={isMobile}>
+                <DateContainer isMobile={isMobile}>
                     <DateAndTimePicker/>
-                </S.DateContainer>
+                </DateContainer>
 
-            </S.OnboardingContainer>
+            </OnboardingContainer>
 
-            <S.LopdContainer isMobile={isMobile}>
+            <LopdContainer isMobile={isMobile}>
                 <CheckBox 
                     checked={acceptLOPD}
                     onChange={handleChange}
                 />
-                <S.LopdText>
+                <LopdText>
                     Acepto la política de privacidad
-                </S.LopdText>
-            </S.LopdContainer>
+                </LopdText>
+            </LopdContainer>
 
-            <S.ButtonContainer isMobile={isMobile}>
+            <ButtonContainer isMobile={isMobile}>
                 <MyButton 
                     variant="contained" 
                     color={acceptLOPD ? "secondary" : "grey"}
@@ -191,7 +164,7 @@ export default function ConsultancyForm() {
                 >
                     AGENDAR
                 </MyButton>
-            </S.ButtonContainer>
+            </ButtonContainer>
 
         </WindowSection>
     )

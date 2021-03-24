@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 export const OnboardingContainer = styled.div`
     padding: ${({isMobile}) => isMobile ? 80 : 90}px ${({isMobile}) => isMobile ? 40 : 180}px ${({isMobile}) => isMobile ? 10 : 2}px;
@@ -57,3 +59,37 @@ export const ButtonContainer = styled.div`
     margin: ${({theme, isMobile})=> isMobile ? 0 : `${theme.scale.base}px`} 0 ${({theme, isMobile})=> isMobile ? `${theme.scale.base*8}px` : `${theme.scale.base*7}px`};
 `;
 
+export const MyButton = withStyles((theme) => ({
+        fontFamily: [
+            'Roboto',
+          ].join(','), 
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: theme.palette.getContrastText('#fdcf08'),
+        backgroundColor: '#fdcf08',
+        '&:hover': {
+            backgroundColor: '#EDC412',
+    },
+  }))(Button);
+
+  const useStyles = makeStyles((theme) => ({
+    smallTextFieldContainer: {
+        margin: theme.spacing(2),
+        width: '500px',
+        display: 'flex',
+        flexDirection: `${({ isMobile }) => (isMobile ? "column" : "row")}`,
+    },
+    bigTextFieldContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+    margin: {
+        margin: theme.spacing(2),
+      },
+    textField: {
+        width: '30ch',
+        margin: theme.spacing(2),
+      },
+  }));
+
+export default useStyles;
