@@ -31,7 +31,6 @@ export default function ConsultancyForm() {
     }
 
     const {
-        smallTextFieldContainer,
         bigTextFieldContainer,
         margin,
         textField
@@ -54,7 +53,7 @@ export default function ConsultancyForm() {
                 </SectionText>
 
                 <form noValidate autoComplete="off">
-                    <div className={smallTextFieldContainer} isMobile={isMobile}>
+                    <div isMobile={isMobile}>
                         <TextField 
                         className={textField}
                         id='filled-size-small'
@@ -62,6 +61,7 @@ export default function ConsultancyForm() {
                         size='small'
                         label='Nombre y Apellido'
                         isMobile={isMobile}
+                        fullWidth={isMobile ? true : false}
                         />
 
                         <TextField 
@@ -72,6 +72,7 @@ export default function ConsultancyForm() {
                         label='Teléfono'
                         helperText='Incluye el código de tu país'
                         isMobile={isMobile}
+                        fullWidth={isMobile ? true : false}
                         />
 
                         <TextField 
@@ -81,6 +82,7 @@ export default function ConsultancyForm() {
                         size='small'
                         label='Email'
                         isMobile={isMobile}
+                        fullWidth={isMobile ? true : false}
                         />
                     </div>
                     

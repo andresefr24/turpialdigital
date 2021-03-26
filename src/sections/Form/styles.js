@@ -73,12 +73,6 @@ export const MyButton = withStyles((theme) => ({
   }))(Button);
 
   const useStyles = makeStyles((theme) => ({
-    smallTextFieldContainer: {
-        margin: theme.spacing(2),
-        width: '500px',
-        display: 'flex',
-        flexDirection: `${({ isMobile }) => (isMobile ? "column" : "row")}`,
-    },
     bigTextFieldContainer: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -87,8 +81,8 @@ export const MyButton = withStyles((theme) => ({
         margin: theme.spacing(2),
       },
     textField: {
-        width: '30ch',
         margin: theme.spacing(2),
+        width: '29.8%',
       },
   }));
 
